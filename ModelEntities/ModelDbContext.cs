@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Training_Task.ModelEntities;
 
 namespace Training_Task.ModelEntities
 {
@@ -28,5 +29,6 @@ namespace Training_Task.ModelEntities
         public DbSet<Employee> Employees { get; set; }
         public DbSet<SkillMap> SkillMaps { get; set; }
         public DbSet<Skills> Skills { get; set; }
+        public DbSet<Training_Task.ModelEntities.EmployeeModel> EmployeeModel { get; set; }
     }
 }

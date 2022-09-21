@@ -20,7 +20,15 @@ namespace Training_Task.Controllers
         [HttpGet,Route("GetEmployee")]
         public ActionResult GetEmployee()
         {
-            var employees = _dbContext.Employees.Include(s => s.SkillMaps).ThenInclude(s => s.Skills).ToList();
+            var employees = _dbContext.Employees.Include(s => s.SkillMaps).ThenInclude(s => s.Skills).Select(x => new EmployeeModel
+            {
+                EmployeeID = x.EmployeeID,
+                Email = x.Email,
+                Name = x.Name,
+                Manager = x.Manager,
+                Wfm_Manager = x.Wfm_Manager,
+                Skills = x.SkillMaps.Select(y => y.Skills.Name).ToList()
+            }).ToList();
 
             return new OkObjectResult(employees);
         }
